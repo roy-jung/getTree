@@ -1,12 +1,16 @@
-const   gulp     = require('gulp'),
-        gutil    = require('gulp-util')
-        dirMap   = require('gulp-directory-map'),
-        tpl      = require('gulp-template'),
-        rename   = require('gulp-rename'),
-        runSequence = require('run-sequence');
+const   gulp        = require('gulp'),
+        gutil       = require('gulp-util')
+        dirMap      = require('gulp-directory-map'),
+        tpl         = require('gulp-template'),
+        rename      = require('gulp-rename'),
+        runSequence = require('run-sequence'),
+
+        baseDir     = 'app',
+        destDir     = '';
+
 
 const dirMapping = filetype => 
-    gulp.src(`app/**/*.${filetype === 'all' ? '*' : filetype}`)
+    gulp.src(`${baseDir}/**/*.${filetype === 'all' ? '*' : filetype}`)
     .pipe(dirMap({ filename: `tree-${filetype}.json`}))
     .pipe(gulp.dest('filetree'));
 const getElem = data => {
@@ -25,7 +29,7 @@ const getTree = data => {
     gulp.src('filetree/tree.html')
     .pipe(tpl({tree: getElem(dataMap)}))
     .pipe(rename('tree-' + data + '.html'))
-    .pipe(gulp.dest(''))
+    .pipe(gulp.dest(destDir))
 };
 
 gulp
