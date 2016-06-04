@@ -33,12 +33,10 @@ const getTree = data => {
 };
 
 gulp
-.task('folders-all', () => dirMapping('all'))
-.task('addtree-all', ()=> getTree('all'))
-.task('tree', ()=> runSequence('folders-all', 'addtree-all'))
-
-.task('folders-js', () => dirMapping('js'))
-.task('addtree-js', ()=> getTree('js'))
-.task('tree-js', ()=> runSequence('folders-js', 'addtree-js'))
+.task('tree', ()=> {
+    let opt = process.argv.pop().split('--')[1] || 'all';
+    dirMapping(opt);
+    getTree(opt);
+})
 
 .task('default', ['tree']);

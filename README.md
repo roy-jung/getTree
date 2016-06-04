@@ -20,11 +20,17 @@
 
 
 ## 사용법
+`> gulp tree --[확장자]`
+
+사용예
 ```
-> gulp tree       => get all file trees
-> gulp tree-js    => get file trees whose extension name is 'js'
+> gulp tree
+> gulp tree --html
+> gulp tree --js
+> gulp tree --jsx
+> gulp tree --css
 ```
 
 
 ## 생성파일
-생성된 파일은 `destDir`폴더에 `tree-all.html` 혹은 `tree-js.html`로 저장됩니다.
+생성된 파일은 `destDir`폴더에 `tree-all.html` 혹은 `tree-js.html`와 같은 형식으로 저장됩니다.
